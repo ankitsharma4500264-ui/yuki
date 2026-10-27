@@ -1,0 +1,29 @@
+# Render Blueprint for the Python backend (Docker). Not tested by me: review the plan/disk settings in Render first.
+# The embeddings model + PyTorch need >= ~1-2 GB RAM, and the disk (documents, vectors, chats) needs a paid instance.
+services:
+  - type: web
+    name: yuki-agent-api
+    runtime: docker
+    plan: standard
+    healthCheckPath: /api/health
+    disk:
+      name: yuki-data
+      mountPath: /data
+      sizeGB: 5
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false            # paste in the Render dashboard, never in git
+      - key: GROQ_MODEL
+        value: llama-3.3-70b-versatile
+      - key: YUKI_PROVIDER
+        value: groq
+      - key: YUKI_AUTH_MODE
+        value: anon
+      - key: YUKI_SECRET_KEY
+        generateValue: true
+      - key: YUKI_PROXY_HOPS
+        value: "1"            # Render's proxy; use 2 if Vercel rewrites sit in front of it
+      - key: YUKI_ALLOWED_ORIGINS
+        sync: false            # e.g. https://your-site.vercel.app
+      - key: YUKI_ALLOWED_ORIGIN_REGEX
+        value: ""

@@ -1,0 +1,9 @@
+# Lean runtime (Vercel / serverless): no PyTorch, no Chroma. Stays well under the 500 MB function limit.
+# Embeddings: fastembed (ONNX). Vectors: in-memory. See app.py. For the full local stack use requirements-full.txt.
+fastapi>=0.110
+uvicorn>=0.29
+pydantic>=2.6
+python-multipart>=0.0.9
+fastembed>=0.3
+pymupdf>=1.24
+python-dotenv>=1.0

@@ -1,0 +1,9 @@
+# Full local/Docker stack (persistent Chroma store + PyTorch sentence-transformers)
+fastapi>=0.110
+uvicorn[standard]>=0.29
+pydantic>=2.6
+python-multipart>=0.0.9
+chromadb>=0.5
+sentence-transformers>=3.0
+pymupdf>=1.24
+python-dotenv>=1.0
